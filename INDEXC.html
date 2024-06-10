@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Shipping Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        label, input {
+            display: block;
+            margin: 10px auto;
+            width: 80%;
+            max-width: 300px;
+        }
+        input {
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            background-color: #007BFF;
+            color: #fff;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Shipping Calculator</h1>
+        <form id="shippingForm">
+            <label for="weight">Weight (kg):</label>
+            <input type="number" id="weight" name="weight" step="0.01">
+            <label for="distance">Distance (km):</label>
+            <input type="number" id="distance" name="distance" step="0.01">
+            <button type="button" onclick="calculateShipping()">Calculate</button>
+        </form>
+        <p id="result"></p>
+    </div>
+    <script>
+        function calculateShipping() {
+            // الحصول على قيم الوزن والمسافة من النموذج
+            var weight = parseFloat(document.getElementById('weight').value);
+            var distance = parseFloat(document.getElementById('distance').value);
+
+            // التأكد من أن القيم المدخلة صحيحة وليست NaN
+            if (isNaN(weight) || isNaN(distance) || weight <= 0 || distance <= 0) {
+                document.getElementById('result').innerText = 'Please enter valid positive numbers for weight and distance.';
+                return;
+            }
+
+            // حساب تكلفة الشحن
+            var cost = weight * distance * 0.5; // معادلة تكلفة تجريبية
+
+            // عرض النتيجة
+            document.getElementById('result').innerText = 'The shipping cost is $' + cost.toFixed(2);
+        }
+    </script>
+</body>
+</html>
